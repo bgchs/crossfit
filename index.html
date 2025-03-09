@@ -33,13 +33,6 @@
             left: 0;
             z-index: 1000;
             background-color: #187F3B;
-            transition: opacity 0.5s;
-        }
-        
-        .logo {
-            max-width: 100%;
-            height: auto;
-            max-height: 80vh;
         }
         
         #target-frame {
@@ -50,8 +43,6 @@
             height: 100%;
             border: none;
             z-index: 10;
-            opacity: 0;
-            transition: opacity 1s;
         }
         
         @media (max-width: 768px) {
@@ -63,7 +54,6 @@
 </head>
 <body>
     <div class="loading-container" id="loading">
-        <img src="bc_logo.png" alt="빅치즈 로고" class="logo">
     </div>
     
     <iframe id="target-frame" title="리다이렉트 대상"></iframe>
@@ -107,18 +97,11 @@
             iframe.onload = function() {
                 console.log("iframe 로드 완료");
                 
-                // 페이지 전환 애니메이션
-                setTimeout(function() {
-                    iframe.style.opacity = "1";
-                    
-                    setTimeout(function() {
-                        loading.style.opacity = "0";
-                        
-                        setTimeout(function() {
-                            loading.style.display = "none";
-                        }, 500);
-                    }, 500);
-                }, 800);
+                // 로딩 컨테이너 즉시 숨기기
+                loading.style.display = "none";
+                
+                // iframe 즉시 표시
+                iframe.style.display = "block";
             };
             
             // 오류 처리
