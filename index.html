@@ -22,19 +22,6 @@
             font-family: Arial, sans-serif;
         }
         
-        .loading-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            background-color: #187F3B;
-        }
-        
         #target-frame {
             position: fixed;
             top: 0;
@@ -44,18 +31,9 @@
             border: none;
             z-index: 10;
         }
-        
-        @media (max-width: 768px) {
-            .logo {
-                max-height: 60vh;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="loading-container" id="loading">
-    </div>
-    
     <iframe id="target-frame" title="리다이렉트 대상"></iframe>
     
     <script>
@@ -85,24 +63,12 @@
             }
             
             var iframe = document.getElementById('target-frame');
-            var loading = document.getElementById('loading');
             
             // iframe 소스 설정 전 디버깅 메시지
             console.log("iframe 소스 설정:", targetUrl);
             
             // iframe 소스 설정
             iframe.src = targetUrl;
-            
-            // iframe 로드 완료 이벤트
-            iframe.onload = function() {
-                console.log("iframe 로드 완료");
-                
-                // 로딩 컨테이너 즉시 숨기기
-                loading.style.display = "none";
-                
-                // iframe 즉시 표시
-                iframe.style.display = "block";
-            };
             
             // 오류 처리
             iframe.onerror = function() {
