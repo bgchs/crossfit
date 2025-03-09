@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bigcheese</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        body {
+            background-color: #187F3B;
+            font-family: Arial, sans-serif;
+        }
+        
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background-color: #187F3B;
+            transition: opacity 0.5s;
+        }
+        
+        .logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 80vh;
+        }
+        
+        #target-frame {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 10;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                max-height: 60vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-container" id="loading">
+        <img src="bc_logo.png" alt="빅치즈 로고" class="logo">
+    </div>
+    
+    <iframe id="target-frame" title="리다이렉트 대상"></iframe>
+    
+    <script>
+        // 페이지 로드 완료 시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            // 타겟 URL 설정
+            var targetUrl;
+            
+            // 현재 URL 정보 가져오기
+            var currentLocation = window.location;
+            var hostname = currentLocation.hostname;
+            
+            console.log("현재 호스트:", hostname); // 디버깅용
+            
+            // 호스트명에 따라 리다이렉트 URL 설정
+            if (hostname === "crossfit.bigcheese.co.kr") {
+                targetUrl = "https://bigcheese.imweb.me/crossfit";
+                document.title = "CrossFit bigcheese";
+            } else if (hostname === "bigcheese.co.kr") {
+                targetUrl = "https://bigcheese.imweb.me/bigcheese";
+                document.title = "bigcheese";
+                console.log("빅치즈 메인 도메인 감지됨, 대상 URL:", targetUrl); // 디버깅용
+            } else {
+                // 명시적으로 전체 URL 지정
+                targetUrl = "https://bigcheese.co.kr";
+                console.log("다른 도메인 감지됨, 기본 URL로 설정:", targetUrl); // 디버깅용
+            }
+            
+            var iframe = document.getElementById('target-frame');
+            var loading = document.getElementById('loading');
+            
+            // iframe 소스 설정 전 디버깅 메시지
+            console.log("iframe 소스 설정:", targetUrl);
+            
+            // iframe 소스 설정
+            iframe.src = targetUrl;
+            
+            // iframe 로드 완료 이벤트
+            iframe.onload = function() {
+                console.log("iframe 로드 완료");
+                
+                // 페이지 전환 애니메이션
+                setTimeout(function() {
+                    iframe.style.opacity = "1";
+                    
+                    setTimeout(function() {
+                        loading.style.opacity = "0";
+                        
+                        setTimeout(function() {
+                            loading.style.display = "none";
+                        }, 500);
+                    }, 500);
+                }, 800);
+            };
+            
+            // 오류 처리
+            iframe.onerror = function() {
+                console.error("iframe 로드 오류 발생");
+                alert("페이지를 로드하는 중 오류가 발생했습니다.");
+            };
+        });
+    </script>
+</body>
+</html>
