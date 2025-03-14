@@ -3,45 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:image" content="og_crossfit.png">
+    <meta property="og:image" content="https://crossfit.bigcheese.co.kr/og_crossfit.png">
     <meta property="og:title" content="CrossFit bigcheese">
     <meta property="og:description" content="Living the cheese life">
     <meta property="og:url" content="https://crossfit.bigcheese.co.kr">
-
     
-    <title>bigcheese</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html, body {
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        body {
-            background-color: #187F3B;
-            font-family: Arial, sans-serif;
-        }
-        
-        #target-frame {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            z-index: 10;
-        }
-    </style>
+    <title>CrossFit bigcheese</title>
 </head>
 <body>
-    <iframe id="target-frame" title="리다이렉트 대상"></iframe>
-    
     <script>
         // 페이지 로드 완료 시 실행
         document.addEventListener('DOMContentLoaded', function() {
@@ -52,35 +21,18 @@
             var currentLocation = window.location;
             var hostname = currentLocation.hostname;
             
-            console.log("현재 호스트:", hostname); // 디버깅용
-            
             // 호스트명에 따라 리다이렉트 URL 설정
             if (hostname === "crossfit.bigcheese.co.kr") {
                 targetUrl = "https://bigcheese.imweb.me/crossfit";
-                document.title = "CrossFit bigcheese";
+                // 즉시 리다이렉트
+                window.location.href = targetUrl;
             } else if (hostname === "bigcheese.co.kr") {
                 targetUrl = "https://bigcheese.imweb.me/bigcheese";
-                document.title = "bigcheese";
-                console.log("빅치즈 메인 도메인 감지됨, 대상 URL:", targetUrl); // 디버깅용
+                window.location.href = targetUrl;
             } else {
-                // 명시적으로 전체 URL 지정
                 targetUrl = "https://bigcheese.co.kr";
-                console.log("다른 도메인 감지됨, 기본 URL로 설정:", targetUrl); // 디버깅용
+                window.location.href = targetUrl;
             }
-            
-            var iframe = document.getElementById('target-frame');
-            
-            // iframe 소스 설정 전 디버깅 메시지
-            console.log("iframe 소스 설정:", targetUrl);
-            
-            // iframe 소스 설정
-            iframe.src = targetUrl;
-            
-            // 오류 처리
-            iframe.onerror = function() {
-                console.error("iframe 로드 오류 발생");
-                alert("페이지를 로드하는 중 오류가 발생했습니다.");
-            };
         });
     </script>
 </body>
