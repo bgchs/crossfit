@@ -9,26 +9,49 @@
     <meta property="og:url" content="https://crossfit.bigcheese.co.kr">
     
     <title>CrossFit bigcheese</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        #target-frame {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            z-index: 10;
+        }
+    </style>
 </head>
 <body>
+    <iframe id="target-frame" title="CrossFit bigcheese"></iframe>
+    
     <script>
         // 페이지 로드 완료 시 실행
         document.addEventListener('DOMContentLoaded', function() {
-            // 타겟 URL 설정
-            var targetUrl;
-            
             // 현재 URL 정보 가져오기
             var currentLocation = window.location;
             var hostname = currentLocation.hostname;
             
-            // 호스트명에 따라 리다이렉트 URL 설정
+            // iframe 요소 가져오기
+            var iframe = document.getElementById('target-frame');
+            
+            // 호스트명에 따라 iframe 소스 설정
             if (hostname === "crossfit.bigcheese.co.kr") {
-                targetUrl = "https://bigcheese.imweb.me/crossfit";
-                // 즉시 리다이렉트
-                window.location.href = targetUrl;
+                iframe.src = "https://bigcheese.imweb.me/crossfit";
             } else {
-                targetUrl = "https://crossfit.bigcheese.co.kr";
-                window.location.href = targetUrl;
+                // 다른 도메인에서 접속했을 경우 crossfit.bigcheese.co.kr로 리다이렉트
+                window.location.href = "https://crossfit.bigcheese.co.kr";
             }
         });
     </script>
