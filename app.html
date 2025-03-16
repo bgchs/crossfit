@@ -1,1 +1,65 @@
-
+<!DOCTYPE html> 
+<html lang="ko"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta property="og:image" content="https://crossfit.bigcheese.co.kr/og_crossfit.png"> 
+    <meta property="og:title" content="CrossFit bigcheese"> 
+    <meta property="og:description" content="Living the cheese life"> 
+    <meta property="og:url" content="https://crossfit.bigcheese.co.kr"> 
+    <meta property="og:type" content="website">
+    <title>CrossFit bigcheese</title> 
+    <style> 
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        html, body { 
+            height: 100%; 
+            width: 100%; 
+            overflow: hidden; 
+        }
+        
+        #target-frame { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            border: none; 
+            z-index: 10; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <iframe id="target-frame" title="CrossFit bigcheese"></iframe>
+    
+    <script> 
+        // 페이지 로드 완료 시 실행 
+        document.addEventListener('DOMContentLoaded', function() { 
+            // 현재 URL 정보 가져오기 
+            var currentLocation = window.location; 
+            var hostname = currentLocation.hostname;
+            var pathname = currentLocation.pathname;
+            
+            // iframe 요소 가져오기 
+            var iframe = document.getElementById('target-frame');
+            
+            // 호스트명에 따라 iframe 소스 설정 
+            if (hostname === "crossfit.bigcheese.co.kr") { 
+                // /app 경로로 접속한 경우 coming 페이지로 리다이렉트
+                if (pathname === "/app" || pathname === "/app/") {
+                    iframe.src = "https://bigcheese.imweb.me/coming";
+                } else {
+                    iframe.src = "https://bigcheese.imweb.me/crossfit"; 
+                }
+            } else { 
+                // 다른 도메인에서 접속했을 경우 crossfit.bigcheese.co.kr로 리다이렉트 
+                window.location.href = "https://crossfit.bigcheese.co.kr"; 
+            } 
+        }); 
+    </script> 
+</body> 
+</html>
