@@ -48,21 +48,32 @@
                 background: linear-gradient(90deg, #f2f2f2 calc(50% - 240px), #fff 0 calc(50% + 240px), #f2f2f2 0);
             }
             #pc-ch-btn {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 position: fixed;
                 left: calc(50% + 310px);
                 bottom: 72px;
                 z-index: 11;
-                line-height: 0;
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                background: #187F3B;
             }
-            #pc-ch-btn img { width: 72px; height: auto; }
+            #pc-ch-btn .ch-icon {
+                width: 40px;
+                height: 40px;
+                background: #fff;
+                -webkit-mask: url(https://bgchs.github.io/btn/btn_channel.svg) center / contain no-repeat;
+                mask: url(https://bgchs.github.io/btn/btn_channel.svg) center / contain no-repeat;
+            }
         }
     </style>
 </head>
 <body>
     <iframe id="target-frame" title="CrossFit bigcheese"></iframe>
     <a id="pc-ch-btn" href="https://pf.kakao.com/_xaFPfn/chat" target="_blank" rel="noopener">
-        <img src="https://bgchs.github.io/btn/btn_channel.svg" alt="카카오 채널">
+        <span class="ch-icon" aria-label="카카오 채널"></span>
     </a>
 
     <script>
