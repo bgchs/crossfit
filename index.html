@@ -6,6 +6,7 @@
     <meta name="description" content="크로스핏 빅치즈의 중심에는 커뮤니티가 있습니다. 우리는 함께 도전하고 성장하는 하나된 팀으로 서로를 응원합니다.">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#187F3B">
     <meta property="og:image" content="https://crossfit.bigcheese.co.kr/og_crossfit.png">
     <meta property="og:title" content="CrossFit bigcheese">
     <meta property="og:description" content="Living the cheese life">
@@ -24,21 +25,45 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
+            background: #187F3B;
         }
 
         #target-frame {
             position: fixed;
             top: 0;
             left: 0;
+            right: 0;
+            margin: 0 auto;
             width: 100%;
+            max-width: 480px;
             height: 100%;
             border: none;
             z-index: 10;
+        }
+
+        #pc-ch-btn { display: none; }
+
+        @media (min-width: 768px) {
+            html, body {
+                background: linear-gradient(90deg, #f2f2f2 calc(50% - 240px), #fff 0 calc(50% + 240px), #f2f2f2 0);
+            }
+            #pc-ch-btn {
+                display: block;
+                position: fixed;
+                left: calc(50% + 310px);
+                bottom: 72px;
+                z-index: 11;
+                line-height: 0;
+            }
+            #pc-ch-btn img { width: 72px; height: auto; }
         }
     </style>
 </head>
 <body>
     <iframe id="target-frame" title="CrossFit bigcheese"></iframe>
+    <a id="pc-ch-btn" href="https://pf.kakao.com/_xaFPfn/chat" target="_blank" rel="noopener">
+        <img src="https://bgchs.github.io/btn/btn_channel.svg" alt="카카오 채널">
+    </a>
 
     <script>
         // 페이지 로드 완료 시 실행
